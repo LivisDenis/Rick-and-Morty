@@ -19,7 +19,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           <meta name='description' content={seo.description} />
           <meta name='viewport' content='width=device-width,initial-scale=1' />
         </head>
-        <body className='container'>
+        <body>
         <TRPCProvider>
           {children}
         </TRPCProvider>
