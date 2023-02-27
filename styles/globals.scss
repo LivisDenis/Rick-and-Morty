@@ -1,0 +1,88 @@
+@import '/styles/typography.scss';
+@import '/styles/reset.scss';
+@import '/styles/variables.scss';
+
+html,
+body {
+  background-color: #202329;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.2s;
+
+  &:hover {
+    color: $primary-default;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 0 20px;
+  max-width: 1070px;
+  margin: 0 auto;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  button {
+    width: 100%;
+  }
+
+  @include media(no-mobile-screens) {
+    justify-content: left;
+
+    button {
+      width: auto;
+    }
+  }
+}
+
+.entities_container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  li {
+    width: 100%;
+
+    @include media(no-mobile-screens) {
+      width: inherit;
+    }
+  }
+}
+
+.episodes_container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  li {
+    width: 100%;
+
+    @include media(no-mobile-screens) {
+      width: inherit;
+    }
+  }
+}
