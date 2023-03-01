@@ -1,17 +1,20 @@
 import { caller } from '@/server/routes';
+import { Card } from '@/components';
 const RootPage = async () => {
-    const hello = await caller.hello({text: 'Rick and Morty'});
+  const { response } = await caller.getCharacters();
 
-    return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-            <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-                Rick <span className="text-[hsl(280,100%,70%)]">and</span> Morty
-            </h1>
-            <p className="text-2xl text-white">
-                {hello.greeting ? hello.greeting : "Loading tRPC query..."}
-            </p>
-        </main>
-    );
+  return (
+    <main className='flex h-full flex-col items-center justify-center'>
+      <h1 className='mt-4 text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]'>
+        Rick <span className='text-[hsl(280,100%,70%)]'>and</span> Morty
+      </h1>
+      <div className={'mt-6 grid grid-cols-2 gap-x-6 gap-y-4'}>
+        {response.map((char) => (
+          <Card key={char.id} {...char} />
+        ))}
+      </div>
+    </main>
+  );
 };
 
 export default RootPage;

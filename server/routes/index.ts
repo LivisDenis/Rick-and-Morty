@@ -1,11 +1,9 @@
 import { initTRPC } from '@trpc/server';
-import {exampleRouter} from "@/server/routes/example";
+import { charactersRouter } from '@/server/routes/characters/router';
 
 const trpc = initTRPC.create();
 
-export const appRouter = trpc.mergeRouters(
-    exampleRouter
-);
+export const appRouter = trpc.mergeRouters(charactersRouter);
 export type AppRouter = typeof appRouter;
 
 export const caller = appRouter.createCaller({});
