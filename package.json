@@ -6,7 +6,8 @@
     "build": "next build",
     "dev": "next dev",
     "postinstall": "prisma generate",
-    "lint": "next lint",
+    "lint": "eslint **/*.{tsx,ts}",
+    "lint:fix": "eslint **/*.{tsx,ts}  --fix",
     "format": "prettier --write \"**/*.{ts,tsx,css}\"",
     "start": "next start"
   },
@@ -20,7 +21,7 @@
     "@types/axios": "^0.14.0",
     "@types/react-toastify": "^4.1.0",
     "classnames": "^2.3.2",
-    "next": "13.1.6",
+    "next": "^13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-toastify": "^9.1.1",
@@ -29,6 +30,7 @@
     "zod": "^3.20.2"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/eslint": "^8.21.1",
     "@types/node": "^18.11.18",
     "@types/prettier": "^2.7.2",

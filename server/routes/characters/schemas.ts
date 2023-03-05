@@ -1,0 +1,13 @@
+import { z } from 'zod';
+
+export const CHARACTER_INPUTS = {
+  getCharacter: z.object({}).optional(),
+  getCharacterMultiple: z.object({}).optional(),
+  getCharacters: z.object({}).optional(),
+  getCharactersInfo: z
+    .object({
+      count: z.number().optional(),
+      pages: z.number().optional()
+    })
+    .optional()
+};

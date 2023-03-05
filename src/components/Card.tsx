@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -15,8 +16,8 @@ export const Card = (props: Character) => {
         className={'rounded-tl-[10px] rounded-bl-[10px] object-cover'}
       />
       <div className={'flex flex-col p-4'}>
-        <Link href={`/characters/${id}`}>
-          <h3 className={'text-[18px] font-bold text-white'}>{name}</h3>
+        <Link href={`/characters/${id}`} className={'text-[18px] font-bold text-white'}>
+          {name}
         </Link>
         <span className={'mt-2 text-[14px] text-slate-400'}>{status}</span>
         <div className={'mt-6 flex flex-col'}>

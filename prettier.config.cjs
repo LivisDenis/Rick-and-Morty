@@ -8,5 +8,7 @@ module.exports = {
   jsxSingleQuote: true,
   arrowParens: 'always',
   useTabs: false,
+  importOrder: ["^react(.*)", "antd/(.*)", "<THIRD_PARTY_MODULES>", "@/(.*)", "^[./]"],
+  importOrderSeparation: true,
   plugins: [require.resolve("prettier-plugin-tailwindcss")],
 };

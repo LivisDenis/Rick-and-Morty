@@ -1,19 +1,19 @@
-import { procedure, trpc, wrapSuccess } from '../../utils';
-import { getCharacter } from '@/utils/api';
-import { z } from 'zod';
+import { CHARACTER_INPUTS } from '@/server/routes/characters/schemas';
+import { getCharacterMultiple } from '@/utils/api';
+
+import { trpc, wrapSuccess } from '../../utils';
 
 export const charactersRouter = trpc.router({
-  getCharacters: procedure
-    .input(
-      z
-        .object({
-          text: z.string().optional()
-        })
-        .optional()
-    )
+  getCharacterMultiple: trpc.procedure
+    .input(CHARACTER_INPUTS.getCharacterMultiple)
     .query(async () => {
-      const character = await getCharacter();
+      const character = await getCharacterMultiple();
 
       return wrapSuccess(character);
-    })
+    }),
+  getCharactersInfo: trpc.procedure.input(CHARACTER_INPUTS.getCharactersInfo).query(async () => {
+    const character = await getCharacterMultiple();
+
+    return wrapSuccess(character);
+  })
 });

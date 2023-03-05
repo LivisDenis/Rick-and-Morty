@@ -1,4 +1,5 @@
 import { initTRPC } from '@trpc/server';
+
 import { charactersRouter } from '@/server/routes/characters/router';
 
 const trpc = initTRPC.create();

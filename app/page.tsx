@@ -1,7 +1,13 @@
-import { caller } from '@/server/routes';
 import { Card } from '@/components';
+import { caller } from '@/server/routes';
+
+export const metadata = {
+  title: '🔫 Rick and Morty app',
+  description: 'Omg morty ?'
+};
+
 const RootPage = async () => {
-  const { response } = await caller.getCharacters();
+  const { response } = await caller.getCharacterMultiple();
 
   return (
     <main className='flex h-full flex-col items-center justify-center'>
