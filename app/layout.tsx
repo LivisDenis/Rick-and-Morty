@@ -11,16 +11,15 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html>
-      <head>
-        <meta name='viewport' content='width=device-width,initial-scale=1' />
-      </head>
-      <body>
-        <TRPCProvider>
-          <Header />
-          {children}
-          <Footer />
-        </TRPCProvider>
-      </body>
+      <TRPCProvider>
+        <body className={'min-h-screen flex flex-col'}>
+            <Header />
+            <main className={'flex-1'}>
+              {children}
+            </main>
+            <Footer />
+        </body>
+      </TRPCProvider>
     </html>
   );
 };

@@ -14,7 +14,7 @@ const navLinks = [
 export const Header = () => {
   return (
     <header
-      className={'mx-auto flex max-w-[1040px] flex-row items-center justify-between py-3 px-2'}
+      className={'flex max-w-[1040px] flex-row items-center justify-between py-3 px-2'}
     >
       <Link href={ROUTES.ROOT}>
         <Logo />
