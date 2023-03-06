@@ -15,7 +15,7 @@ interface CharacterProps {
   };
 }
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
 const Character = async ({ params }: CharacterProps) => {
   const { response } = await caller.getCharacter({ params: { id: +params.id } });
