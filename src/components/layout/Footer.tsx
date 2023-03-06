@@ -10,22 +10,22 @@ export const Footer = () => {
         <span>LOCATIONS: 126</span>
         <span>EPISODES: 51</span>
       </div>
+      <Link
+        prefetch={false}
+        target='_blank'
+        href={'https://github.com/LivisDenis/Rick-and-Morty'}
+        className={'text-stone-50 mt-4'}
+      >
+        Github Repository
+      </Link>
       <ul className={'mt-4 flex gap-3'}>
         <li>
-          <Link
-              prefetch={false}
-              target='_blank'
-              href='https://github.com/LivisDenis'
-          >
+          <Link prefetch={false} target='_blank' href='https://github.com/LivisDenis'>
             <Github />
           </Link>
         </li>
         <li>
-          <Link
-              prefetch={false}
-              target='_blank'
-              href='https://t.me/champion_planeti'
-          >
+          <Link prefetch={false} target='_blank' href='https://t.me/champion_planeti'>
             <Telegram />
           </Link>
         </li>

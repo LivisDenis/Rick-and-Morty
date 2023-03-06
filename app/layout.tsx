@@ -12,12 +12,10 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html>
       <TRPCProvider>
-        <body className={'min-h-screen flex flex-col'}>
-            <Header />
-            <main className={'flex-1'}>
-              {children}
-            </main>
-            <Footer />
+        <body className={'min-h-screen mx-auto flex flex-col px-4 max-w-[1070px]'}>
+          <Header />
+          <main className={'flex-1'}>{children}</main>
+          <Footer />
         </body>
       </TRPCProvider>
     </html>

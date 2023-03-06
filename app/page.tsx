@@ -14,7 +14,7 @@ const RootPage = async () => {
       <h1 className='mt-4 text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]'>
         Rick <span className='text-[hsl(280,100%,70%)]'>and</span> Morty
       </h1>
-      <div className={'mt-16 grid grid-cols-2 gap-x-6 gap-y-4'}>
+      <div className={'mt-16 grid grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'}>
         {response.map((char) => (
           <Card key={char.id} {...char} />
         ))}

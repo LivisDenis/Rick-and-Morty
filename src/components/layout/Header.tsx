@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Link from 'next/link';
 
 import { Logo } from '@/components';
@@ -13,9 +11,7 @@ const navLinks = [
 ];
 export const Header = () => {
   return (
-    <header
-      className={'flex max-w-[1040px] flex-row items-center justify-between py-3 px-2'}
-    >
+    <header className={'mx-auto flex w-[100%] items-center justify-between py-3'}>
       <Link href={ROUTES.ROOT}>
         <Logo />
       </Link>
