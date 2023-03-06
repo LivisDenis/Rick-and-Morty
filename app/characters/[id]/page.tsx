@@ -1,4 +1,5 @@
 import { caller } from '@/server/routes';
+import {Card} from "@/components";
 
 export async function generateStaticParams() {
   const charactersCount = (await caller.getCharactersInfo()).response.count;
@@ -14,14 +15,13 @@ interface CharacterProps {
   };
 }
 
+export const dynamic = 'force-dynamic';
+
 const Character = async ({ params }: CharacterProps) => {
   const { response } = await caller.getCharacter({ params: { id: +params.id } });
 
   return (
-    <div>
-      <div>{response.id}</div>
-      <div>{response.name}</div>
-    </div>
+      <Card {...response} />
   );
 };
 
