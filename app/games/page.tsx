@@ -1,12 +1,10 @@
-import React from 'react';
-
 export const metadata = {
   title: '🔫 Games',
   description: 'Omg morty ?'
 };
 
 const Games = () => {
-  return <div>Games</div>;
+  return <section>Games</section>;
 };
 
 export default Games;
