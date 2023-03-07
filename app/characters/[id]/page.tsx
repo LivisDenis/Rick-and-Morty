@@ -1,6 +1,14 @@
 import { caller } from '@/server/routes';
 import {Card} from "@/components";
 
+export async function generateMetadata({ params }: CharacterProps) {
+  const { response: character } = await caller.getCharacter({ params: { id: +params.id } });
+
+  return {
+    title: character.name
+  }
+}
+
 export async function generateStaticParams() {
   const charactersCount = (await caller.getCharactersInfo()).response.count;
 
@@ -11,17 +19,20 @@ export async function generateStaticParams() {
 
 interface CharacterProps {
   params: {
-    id: string;
+    id: string
   };
 }
+// export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
-export const dynamic = 'force-static';
 
 const Character = async ({ params }: CharacterProps) => {
   const { response } = await caller.getCharacter({ params: { id: +params.id } });
 
-  return (
-      <Card {...response} />
+    return (
+        <div>
+          <Card {...response} />
+        </div>
   );
 };
 
