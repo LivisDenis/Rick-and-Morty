@@ -1,14 +1,21 @@
 import Link from 'next/link';
 
 import { Github, Telegram } from '@/components';
+import { caller } from '@/server/routes';
 
-export const Footer = () => {
+export const Footer = async () => {
+  const [charactersCount, locationsCount, episodesCount] = await Promise.all([
+    (await caller.getCharactersInfo()).response.count,
+    (await caller.getLocationsInfo()).response.count,
+    (await caller.getEpisodesInfo()).response.count
+  ]);
+
   return (
     <footer className={'mt-12 flex flex-col items-center pb-6'}>
       <div className={'mt-6 flex gap-3 [&_span]:text-stone-50 [&_span]:text-[12px]'}>
-        <span>CHARACTERS: 826</span>
-        <span>LOCATIONS: 126</span>
-        <span>EPISODES: 51</span>
+        <span>CHARACTERS: {charactersCount}</span>
+        <span>LOCATIONS: {locationsCount}</span>
+        <span>EPISODES: {episodesCount}</span>
       </div>
       <Link
         prefetch={false}
@@ -34,3 +41,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;

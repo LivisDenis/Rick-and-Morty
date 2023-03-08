@@ -1,2 +1,4 @@
 export * from './api';
-export * from './character';
+export * from './characters';
+export * from './locations';
+export * from './episodes';
