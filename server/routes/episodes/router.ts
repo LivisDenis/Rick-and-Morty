@@ -1,7 +1,8 @@
 import { EPISODES_INPUTS } from '@/server/routes/episodes/schemas';
-import { getEpisodes, getEpisode } from '@/utils/api';
+import { getEpisodes, getEpisode, getEpisodeMultiple } from '@/utils/api';
 
 import { trpc, wrapSuccess } from '../../utils';
+import {isArray} from "is-what";
 
 export const episodesRouter = trpc.router({
   getEpisodesInfo: trpc.procedure.input(EPISODES_INPUTS.getEpisodesInfo).query(async () => {
@@ -9,6 +10,17 @@ export const episodesRouter = trpc.router({
 
     return wrapSuccess(info);
   }),
+  getEpisodeMultiple: trpc.procedure
+    .input(EPISODES_INPUTS.getEpisodeMultiple)
+    .query(async ({ input }) => {
+      const episodes = await getEpisodeMultiple({ params: { multiple: input?.params?.multiple } });
+
+      if (!isArray(episodes)) {
+        return wrapSuccess([episodes]);
+      }
+
+      return wrapSuccess(episodes);
+    }),
   getEpisodes: trpc.procedure.input(EPISODES_INPUTS.getEpisodes).query(async () => {
     const episodes = await getEpisodes();
 

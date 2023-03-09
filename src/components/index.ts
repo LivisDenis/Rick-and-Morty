@@ -1,3 +1,3 @@
-export * from './layout/Header';
+export * from './layout';
 export * from './icons';
-export * from './Card';
+export * from './cards';

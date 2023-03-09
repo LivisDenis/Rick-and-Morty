@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const Card = (props: Character) => {
+export const CharacterCard = (props: Character) => {
   const { image, name, status, location, id } = props;
 
   return (

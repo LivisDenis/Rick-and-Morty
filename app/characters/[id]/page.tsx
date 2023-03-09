@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { CharacterInfo } from '@/app/characters/[id]/components/CharacterInfo';
+import { EpisodesList } from '@/app/characters/[id]/components/EpisodesList';
 import { caller } from '@/server/routes';
 
 export async function generateMetadata({ params }: CharacterProps) {
@@ -35,15 +37,18 @@ const Character = async ({ params }: CharacterProps) => {
     <section>
       <h1 className={'text-slate-200 text-[46px]'}>{character.name}</h1>
       <div className={'mt-4 flex'}>
-        <Image src={character.image} alt={character.name} width={250} height={250} />
-        <ul className={'ml-7 flex flex-col [&_li]:text-slate-200 [&_li]:text-[20px] [&_li]:mb-2'}>
-          <li>
-            Species: <span className={'text-[hsl(280,100%,70%)]'}>{character.species}</span>
-          </li>
-          <li>
-            Gender: <span className={'text-[hsl(280,100%,70%)]'}>{character.gender}</span>
-          </li>
-        </ul>
+        <Image
+          src={character.image}
+          alt={character.name}
+          width={250}
+          height={250}
+          className={'rounded-[15px]'}
+        />
+        <CharacterInfo {...character} />
+      </div>
+      <div>
+        <h2 className={'text-[38px] text-slate-200 font-bold mt-12 mb-7'}>Episodes</h2>
+        <EpisodesList episodesLink={character.episode} />
       </div>
     </section>
   );

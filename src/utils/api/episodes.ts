@@ -1,11 +1,11 @@
-import type { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { api } from '@/utils/api/api';
 
 export const getEpisodes = async () => {
-  const { data } = await api.get<Result<Episode>>('/episode');
+  const response: AxiosResponse<Result<Episode>> = await api.get('/episode');
 
-  return data;
+  return response.data;
 };
 
 interface EpisodeParams {
@@ -15,7 +15,23 @@ interface EpisodeParams {
   config?: AxiosRequestConfig;
 }
 export const getEpisode = async ({ params, config }: EpisodeParams) => {
-  const { data } = await api.get<Episode>(`/episode/${params.id}`, { ...config });
+  const response: AxiosResponse<Episode> = await api.get(`/episode/${params.id}`, { ...config });
 
-  return data;
+  return response.data;
+};
+
+interface EpisodeMultipleParams {
+  params: {
+    multiple?: string | string[];
+  };
+  filter?: EpisodeFilter;
+}
+
+export const getEpisodeMultiple = async ({ filter, params }: EpisodeMultipleParams) => {
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  const response: AxiosResponse<Episode[] | Episode> = await api.get(`/episode/${params?.multiple}`, {
+    params: filter
+  });
+
+  return response.data;
 };

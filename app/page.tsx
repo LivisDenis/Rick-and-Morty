@@ -1,4 +1,4 @@
-import { Card } from '@/components';
+import { CharacterCard } from '@/components';
 import { caller } from '@/server/routes';
 
 export const metadata = {
@@ -16,7 +16,7 @@ const RootPage = async () => {
       </h1>
       <div className={'mt-16 grid grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'}>
         {response.map((char) => (
-          <Card key={char.id} {...char} />
+          <CharacterCard key={char.id} {...char} />
         ))}
       </div>
     </section>
