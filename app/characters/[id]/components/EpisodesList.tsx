@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { SkeletonCard } from '@/components/skeletons';
+import { SkeletonCard } from '@/components';
 import { trpc } from '@/src/utils';
 
 export const EpisodesList = ({ episodesLink }: { episodesLink: string[] }) => {
@@ -15,18 +15,16 @@ export const EpisodesList = ({ episodesLink }: { episodesLink: string[] }) => {
   });
 
   return (
-    <ul className={'grid grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'}>
+    <ul className='grid grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'>
       {isLoading && Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)}
       {!isLoading &&
         data?.response.map((episode) => (
           <li key={episode.id}>
-            <article
-              className={'w-full flex flex-col max-w-[500px] rounded-[10px] bg-gray-600 p-6'}
-            >
-              <Link href={`/episodes/${episode.id}`} className={'text-[18px] font-bold text-white'}>
+            <article className='w-full flex flex-col max-w-[500px] rounded-[10px] bg-gray-600 p-6'>
+              <Link href={`/episodes/${episode.id}`} className='text-[18px] font-bold text-white'>
                 {episode.episode}: {episode.name}
               </Link>
-              <span className={'mt-3'}>{episode.air_date}</span>
+              <span className='mt-3'>{episode.air_date}</span>
             </article>
           </li>
         ))}

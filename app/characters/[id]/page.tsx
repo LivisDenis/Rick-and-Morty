@@ -35,19 +35,19 @@ const Character = async ({ params }: CharacterProps) => {
 
   return (
     <section>
-      <h1 className={'text-slate-200 text-[46px]'}>{character.name}</h1>
-      <div className={'mt-4 flex'}>
+      <h1 className='text-slate-200 text-[46px]'>{character.name}</h1>
+      <div className='mt-4 flex'>
         <Image
           src={character.image}
           alt={character.name}
           width={250}
           height={250}
-          className={'rounded-[15px]'}
+          className='rounded-[15px]'
         />
         <CharacterInfo {...character} />
       </div>
       <div>
-        <h2 className={'text-[38px] text-slate-200 font-bold mt-12 mb-7'}>Episodes</h2>
+        <h2 className='text-[38px] text-slate-200 font-bold mt-12 mb-7'>Episodes</h2>
         <EpisodesList episodesLink={character.episode} />
       </div>
     </section>

@@ -3,8 +3,6 @@ export const metadata = {
   description: 'Omg morty ?'
 };
 
-const Games = () => {
-  return <section>Games</section>;
-};
+const Games = () => <section>Games</section>;
 
 export default Games;
