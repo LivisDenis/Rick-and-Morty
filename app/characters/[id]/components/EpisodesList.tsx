@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 
-import { SkeletonCard } from '@/components';
-import { trpc } from '@/src/utils';
+import {trpc} from "@/src/utils";
+import SkeletonCard from "@/components/skeletons/SkeletonCard";
 
 export const EpisodesList = ({ episodesLink }: { episodesLink: string[] }) => {
   const { data, isLoading } = trpc.getEpisodeMultiple.useQuery({
     params: {
       multiple: episodesLink.map((episode) =>
-        episode.replace('https://rickandmortyapi.com/api/episode/', '')
+          episode.replace('https://rickandmortyapi.com/api/episode/', '')
       )
     }
   });

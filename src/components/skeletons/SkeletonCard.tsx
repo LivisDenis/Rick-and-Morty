@@ -5,3 +5,5 @@ export const SkeletonCard = () => (
     <span className='sr-only'>Loading...</span>
   </div>
 );
+
+export default SkeletonCard

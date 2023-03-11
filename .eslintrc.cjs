@@ -30,6 +30,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "prettier"],
   rules: {
+    'import/no-named-as-default': 'off',
     'react/destructuring-assignment': 'warn',
     'import/no-extraneous-dependencies': 'off',
     'react/no-array-index-key': 'warn',
