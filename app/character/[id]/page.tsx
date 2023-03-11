@@ -1,8 +1,9 @@
 import Image from 'next/image';
 
-import { CharacterInfo } from '@/app/characters/[id]/components/CharacterInfo';
-import { EpisodesList } from '@/app/characters/[id]/components/EpisodesList';
 import { caller } from '@/server/routes';
+
+import { CharacterInfo } from './Components/CharacterInfo';
+import { EpisodesList } from './Components/EpisodesList';
 
 export async function generateMetadata({ params }: CharacterProps) {
   const { response: character } = await caller.getCharacter({ params: { id: +params.id } });

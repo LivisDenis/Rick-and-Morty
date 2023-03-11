@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -16,7 +14,7 @@ export const CharacterCard = (props: Character) => {
         className='rounded-tl-[10px] rounded-bl-[10px] object-cover'
       />
       <div className='flex flex-col p-4'>
-        <Link href={`/characters/${id}`} className='text-[18px] font-bold text-white'>
+        <Link href={`/character/${id}`} className='text-[18px] font-bold text-white'>
           {name}
         </Link>
         <span className='mt-2 text-[14px] text-slate-400'>{status}</span>
