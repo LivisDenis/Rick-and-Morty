@@ -1,5 +1,4 @@
 import { CHARACTER_INPUTS } from '@/server/routes/characters/schemas';
-import { getRandomCharactersId } from '@/src/utils';
 import { getCharacterMultiple, getCharacters, getCharacter } from '@/utils/api';
 
 import { trpc, wrapSuccess } from '../../utils';
@@ -7,9 +6,8 @@ import { trpc, wrapSuccess } from '../../utils';
 export const charactersRouter = trpc.router({
   getCharacterMultiple: trpc.procedure
     .input(CHARACTER_INPUTS.getCharacterMultiple)
-    .query(async () => {
-      const multiple = getRandomCharactersId(6, 826);
-      const character = await getCharacterMultiple({ multiple });
+    .query(async ({input}) => {
+      const character = await getCharacterMultiple({ ...input });
 
       return wrapSuccess(character);
     }),

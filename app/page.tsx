@@ -1,13 +1,19 @@
 import { CharacterCard } from '@/components';
 import { caller } from '@/server/routes';
+import {getRandomCharactersId} from "@/src/utils";
 
 export const metadata = {
   title: '🔫 Rick and Morty app',
   description: 'Omg morty ?'
 };
 
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
 const RootPage = async () => {
-  const { response } = await caller.getCharacterMultiple();
+    const multiple = getRandomCharactersId(6, 826);
+
+    const { response } = await caller.getCharacterMultiple({multiple});
 
   return (
     <section className='flex h-full flex-col items-center justify-center'>

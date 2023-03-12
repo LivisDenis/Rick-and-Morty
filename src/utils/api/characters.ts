@@ -4,7 +4,7 @@ import { api } from '@/utils/api/api';
 
 interface CharacterMultipleParams {
   params?: CharacterFilter;
-  multiple?: number[];
+  multiple?: number[] | number | string;
 }
 
 export const getCharacterMultiple = async ({ multiple }: CharacterMultipleParams) => {
