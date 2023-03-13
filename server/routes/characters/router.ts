@@ -6,18 +6,22 @@ import { trpc, wrapSuccess } from '../../utils';
 export const charactersRouter = trpc.router({
   getCharacterMultiple: trpc.procedure
     .input(CHARACTER_INPUTS.getCharacterMultiple)
-    .query(async ({input}) => {
-      const character = await getCharacterMultiple({ ...input });
+    .query(async ({ input }) => {
+      const characters = await getCharacterMultiple({ ...input });
 
-      return wrapSuccess(character);
+      if (!Array.isArray(characters)) {
+        return wrapSuccess([characters]);
+      }
+
+      return wrapSuccess(characters);
     }),
   getCharactersInfo: trpc.procedure.input(CHARACTER_INPUTS.getCharactersInfo).query(async () => {
     const { info } = await getCharacters();
 
     return wrapSuccess(info);
   }),
-  getCharacters: trpc.procedure.input(CHARACTER_INPUTS.getCharacters).query(async () => {
-    const characters = await getCharacters();
+  getCharacters: trpc.procedure.input(CHARACTER_INPUTS.getCharacters).query(async ({ input }) => {
+    const characters = await getCharacters({ params: { ...input?.filter, ...input?.params } });
 
     return wrapSuccess(characters);
   }),

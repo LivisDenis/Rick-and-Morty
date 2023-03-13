@@ -30,6 +30,8 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "prettier"],
   rules: {
+    'consistent-return': 'warn',
+    'array-callback-return': 'warn',
     'import/no-named-as-default': 'off',
     'react/destructuring-assignment': 'warn',
     'import/no-extraneous-dependencies': 'off',

@@ -4,18 +4,25 @@ import { api } from '@/utils/api/api';
 
 interface CharacterMultipleParams {
   params?: CharacterFilter;
-  multiple?: number[] | number | string;
+  multiple?: number[] | string;
 }
 
-export const getCharacterMultiple = async ({ multiple }: CharacterMultipleParams) => {
+export const getCharacterMultiple = async ({ multiple = '', params }: CharacterMultipleParams) => {
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  const { data } = await api.get<Character[]>(`/character/${multiple}`);
+  const { data } = await api.get<Character | Character[]>(`/character/${multiple}`, {
+    params
+  });
 
   return data;
 };
 
-export const getCharacters = async () => {
-  const { data } = await api.get<Result<Character>>('/character');
+interface CharactersParams {
+  params?: CharacterFilter;
+  config?: AxiosRequestConfig;
+}
+
+export const getCharacters = async ({ params, config }: CharactersParams = {}) => {
+  const { data } = await api.get<Result<Character>>(`/character`, { ...config, params });
 
   return data;
 };

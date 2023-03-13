@@ -19,7 +19,9 @@ export const Header = () => (
       <ul className='flex text-[14px] text-slate-400'>
         {navLinks.map(({ link, href }) => (
           <li key={href} className='ml-4'>
-            <Link href={href}>{link}</Link>
+            <Link prefetch={false} href={href}>
+              {link}
+            </Link>
           </li>
         ))}
       </ul>
