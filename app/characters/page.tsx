@@ -47,6 +47,13 @@ const CharactersFilter = async ({ searchParams }: CharactersSearchParams) => {
             value: searchParams?.status ?? 'all',
             options: [
               {
+                label: 'all',
+                href: {
+                  pathname: ROUTES.CHARACTERS,
+                  query: { ...searchParams, status: undefined }
+                }
+              },
+              {
                 label: 'alive',
                 href: {
                   pathname: ROUTES.CHARACTERS,
@@ -74,6 +81,13 @@ const CharactersFilter = async ({ searchParams }: CharactersSearchParams) => {
             label: 'gender',
             value: searchParams?.gender ?? 'all',
             options: [
+              {
+                label: 'all',
+                href: {
+                  pathname: ROUTES.CHARACTERS,
+                  query: { ...searchParams, gender: undefined }
+                }
+              },
               {
                 label: 'female',
                 href: {
