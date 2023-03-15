@@ -15,11 +15,13 @@ export const charactersRouter = trpc.router({
 
       return wrapSuccess(characters);
     }),
-  getCharactersInfo: trpc.procedure.input(CHARACTER_INPUTS.getCharactersInfo).query(async () => {
-    const { info } = await getCharacters();
+  getCharactersInfo: trpc.procedure
+    .input(CHARACTER_INPUTS.getCharactersInfo)
+    .query(async ({ input }) => {
+      const { info } = await getCharacters({ params: { ...input?.filter } });
 
-    return wrapSuccess(info);
-  }),
+      return wrapSuccess(info);
+    }),
   getCharacters: trpc.procedure.input(CHARACTER_INPUTS.getCharacters).query(async ({ input }) => {
     const characters = await getCharacters({ params: { ...input?.filter, ...input?.params } });
 

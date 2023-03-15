@@ -55,28 +55,28 @@ const CharactersFilter = async ({ searchParams }: CharactersSearchParams) => {
                 label: 'all',
                 href: {
                   pathname: ROUTES.CHARACTERS,
-                  query: { ...searchParams, status: undefined }
+                  query: { ...searchParams, status: undefined, page: 1 }
                 }
               },
               {
                 label: 'alive',
                 href: {
                   pathname: ROUTES.CHARACTERS,
-                  query: { ...searchParams, status: 'alive' }
+                  query: { ...searchParams, status: 'alive', page: 1 }
                 }
               },
               {
                 label: 'dead',
                 href: {
                   pathname: ROUTES.CHARACTERS,
-                  query: { ...searchParams, status: 'dead' }
+                  query: { ...searchParams, status: 'dead', page: 1 }
                 }
               },
               {
                 label: 'unknown',
                 href: {
                   pathname: ROUTES.CHARACTERS,
-                  query: { ...searchParams, status: 'unknown' }
+                  query: { ...searchParams, status: 'unknown', page: 1 }
                 }
               }
             ]
@@ -90,35 +90,35 @@ const CharactersFilter = async ({ searchParams }: CharactersSearchParams) => {
                 label: 'all',
                 href: {
                   pathname: ROUTES.CHARACTERS,
-                  query: { ...searchParams, gender: undefined }
+                  query: { ...searchParams, gender: undefined, page: 1 }
                 }
               },
               {
                 label: 'female',
                 href: {
                   pathname: ROUTES.CHARACTERS,
-                  query: { ...searchParams, gender: 'female' }
+                  query: { ...searchParams, gender: 'female', page: 1 }
                 }
               },
               {
                 label: 'male',
                 href: {
                   pathname: ROUTES.CHARACTERS,
-                  query: { ...searchParams, gender: 'male' }
+                  query: { ...searchParams, gender: 'male', page: 1 }
                 }
               },
               {
                 label: 'genderless',
                 href: {
                   pathname: ROUTES.CHARACTERS,
-                  query: { ...searchParams, gender: 'genderless' }
+                  query: { ...searchParams, gender: 'genderless', page: 1 }
                 }
               },
               {
                 label: 'unknown',
                 href: {
                   pathname: ROUTES.CHARACTERS,
-                  query: { ...searchParams, gender: 'unknown' }
+                  query: { ...searchParams, gender: 'unknown', page: 1 }
                 }
               }
             ]
