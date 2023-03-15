@@ -126,7 +126,10 @@ const CharactersFilter = async ({ searchParams }: CharactersSearchParams) => {
         ]}
       />
       <div className='mt-10'>
-        <div className='text-[26px] text-slate-200 font-bold'>Results</div>
+        <div className='text-[26px] text-slate-200 font-bold mb-4'>
+          Results:
+          <span className='text-[22px] font-medium text-fuchsia-600'> {info.count} characters</span>
+        </div>
         <Pagination
           page={page}
           totalPages={info.pages}

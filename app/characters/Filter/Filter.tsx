@@ -44,7 +44,7 @@ const Filter = ({ items }: FilterProps) => {
       return (
         <div>
           <div className='text-[18px] text-slate-200 font-medium'>{item.label.toUpperCase()}</div>
-          <ul className='flex flex-row gap-x-4 mt-3'>
+          <ul className='flex flex-wrap flex-row gap-x-4 gap-y-3 mt-3'>
             {item.options.map((toggle) => (
               <Link key={toggle.label} href={toggle.href}>
                 <li>

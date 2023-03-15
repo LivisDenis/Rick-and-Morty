@@ -4,7 +4,7 @@ import { caller } from '@/server/routes';
 
 import { Github, Telegram } from '../icons';
 
-export const Footer = async () => {
+export const Footer = async (): Promise<JSX.Element> => {
   const [charactersCount, locationsCount, episodesCount] = await Promise.all([
     (await caller.getCharactersInfo()).response.count,
     (await caller.getLocationsInfo()).response.count,
