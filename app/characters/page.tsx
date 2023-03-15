@@ -1,3 +1,4 @@
+import { Pagination } from '@/app/characters/Pagination/Pagination';
 import { CharacterCard } from '@/components';
 import { caller } from '@/server/routes';
 import { ROUTES } from '@/src/utils';
@@ -30,7 +31,11 @@ const CharactersFilter = async ({ searchParams }: CharactersSearchParams) => {
     ...(searchParams?.name && { name: searchParams.name })
   };
 
-  const { response } = await caller.getCharacters({ filter: filters });
+  const page = searchParams?.page ?? 1;
+
+  const { response: info } = await caller.getCharactersInfo({ filter: filters });
+
+  const { response } = await caller.getCharacters({ params: { page: +page }, filter: filters });
 
   return (
     <section>
@@ -122,6 +127,12 @@ const CharactersFilter = async ({ searchParams }: CharactersSearchParams) => {
       />
       <div className='mt-10'>
         <div className='text-[26px] text-slate-200 font-bold'>Results</div>
+        <Pagination
+          page={page}
+          totalPages={info.pages}
+          nextLink={{ ...searchParams, page: +page + 1 }}
+          prevLink={{ ...searchParams, page: +page - 1 }}
+        />
         <div className='mt-8 grid grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'>
           {response.results.map((char) => (
             <CharacterCard key={char.id} {...char} />

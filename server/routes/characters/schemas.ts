@@ -42,7 +42,8 @@ export const CHARACTER_INPUTS = {
   getCharactersInfo: z
     .object({
       count: z.number().optional(),
-      pages: z.number().optional()
+      pages: z.number().optional(),
+      filter: CHARACTER_FILTER
     })
     .optional()
 };
