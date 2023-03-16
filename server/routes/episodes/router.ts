@@ -20,8 +20,8 @@ export const episodesRouter = trpc.router({
 
       return wrapSuccess(episodes);
     }),
-  getEpisodes: trpc.procedure.input(EPISODES_INPUTS.getEpisodes).query(async () => {
-    const episodes = await getEpisodes();
+  getEpisodes: trpc.procedure.input(EPISODES_INPUTS.getEpisodes).query(async ({ input }) => {
+    const episodes = await getEpisodes({ params: { ...input?.params } });
 
     return wrapSuccess(episodes);
   }),
