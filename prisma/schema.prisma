@@ -10,7 +10,6 @@ datasource db {
 model deadAliveUnknownGame {
   id         Int    @id @default(autoincrement())
   name       String
-  startTime  String
   score      Int
   timeOfGame String
 }
