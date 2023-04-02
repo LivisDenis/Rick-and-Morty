@@ -1,8 +1,9 @@
+import { type Metadata } from 'next';
 import Link from 'next/link';
 
 import { ROUTES } from '@/src/utils';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: '🔫 Games',
   description: 'Omg morty ?'
 };

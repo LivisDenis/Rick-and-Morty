@@ -1,9 +1,10 @@
+import { type Metadata } from 'next';
 import Link from 'next/link';
 
 import EpisodeCard from '@/components/cards/EpisodeCard';
 import { caller } from '@/server/routes';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: '🔫 Episodes',
   description: 'Omg morty ?'
 };

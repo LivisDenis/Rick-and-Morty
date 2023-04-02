@@ -1,8 +1,10 @@
+import { type Metadata } from 'next';
+
 import { CharacterCard } from '@/components';
 import { caller } from '@/server/routes';
 import { getRandomCharactersId } from '@/src/utils';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: '🔫 Rick and Morty app',
   description: 'Omg morty ?'
 };

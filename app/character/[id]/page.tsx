@@ -1,3 +1,4 @@
+import { type Metadata } from 'next';
 import Image from 'next/image';
 
 import { caller } from '@/server/routes';
@@ -5,7 +6,7 @@ import { caller } from '@/server/routes';
 import { CharacterInfo } from './Components/CharacterInfo';
 import { EpisodesList } from './Components/EpisodesList';
 
-export async function generateMetadata({ params }: CharacterProps) {
+export async function generateMetadata({ params }: CharacterProps): Promise<Metadata> {
   const { response: character } = await caller.getCharacter({ params: { id: +params.id } });
 
   return {
