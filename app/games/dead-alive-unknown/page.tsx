@@ -6,12 +6,6 @@ import { GameOver } from './Steps/GameOver';
 import { GamePlay } from './Steps/GamePlay';
 import { GameRegister } from './Steps/GameRegister';
 
-interface GameState {
-  name: string;
-  startTime: number;
-  status: 'not-started' | 'started' | 'game-over';
-}
-
 const INITIAL_GAME_STATE = {
   name: '',
   startTime: 0,
@@ -20,6 +14,11 @@ const INITIAL_GAME_STATE = {
 
 const DeadAliveUnknown = () => {
   const [gameState, setGameState] = useState<GameState>(INITIAL_GAME_STATE);
+  const [resultGame, setResultGame] = useState<ResultGame>({
+    name: '',
+    score: 0,
+    timeOfGame: 0
+  });
 
   return (
     <>
@@ -35,8 +34,27 @@ const DeadAliveUnknown = () => {
           }
         />
       )}
-      {gameState.status === 'started' && <GamePlay name={gameState.name} />}
-      {gameState.status === 'game-over' && <GameOver />}
+      {gameState.status === 'started' && (
+        <GamePlay
+          game={gameState}
+          resultGame={(result) =>
+            setResultGame({
+              name: result.name,
+              score: result.score,
+              timeOfGame: result.timeOfGame
+            })
+          }
+          next={() =>
+            setGameState({
+              ...gameState,
+              status: 'game-over'
+            })
+          }
+        />
+      )}
+      {gameState.status === 'game-over' && (
+        <GameOver resultGame={resultGame} restart={() => setGameState(INITIAL_GAME_STATE)} />
+      )}
     </>
   );
 };
