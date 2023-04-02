@@ -24,7 +24,9 @@ const RootPage = async () => {
       </h1>
       <div className='mt-16 grid grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'>
         {response.map((char) => (
-          <CharacterCard key={char.id} {...char} />
+          <div className='transition ease-out duration-150 hover:scale-105'>
+            <CharacterCard key={char.id} {...char} />
+          </div>
         ))}
       </div>
     </section>

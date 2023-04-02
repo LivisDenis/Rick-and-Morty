@@ -5,7 +5,7 @@ export const CharacterCard = (props: Character) => {
   const { image, name, status, location, id } = props;
 
   return (
-    <article className='flex w-full max-w-[500px] rounded-[10px] bg-gray-600'>
+    <div className='flex w-full max-w-[500px] rounded-[10px] bg-gray-600'>
       <Image
         src={image}
         alt={name}
@@ -23,6 +23,6 @@ export const CharacterCard = (props: Character) => {
           <span className='mt-2 text-[16px] text-slate-400'>{location.name}</span>
         </div>
       </div>
-    </article>
+    </div>
   );
 };
