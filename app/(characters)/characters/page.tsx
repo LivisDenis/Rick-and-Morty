@@ -1,5 +1,4 @@
-import { Pagination } from '@/app/(characters)/characters/Pagination/Pagination';
-import { CharacterCard } from '@/components';
+import { CharacterCard, Pagination } from '@/components';
 import { caller } from '@/server/routes';
 import { ROUTES } from '@/src/utils';
 
@@ -133,8 +132,9 @@ const CharactersFilter = async ({ searchParams }: CharactersSearchParams) => {
         <Pagination
           page={page}
           totalPages={info.pages}
-          nextLink={{ ...searchParams, page: +page + 1 }}
-          prevLink={{ ...searchParams, page: +page - 1 }}
+          queryParams
+          pathname={ROUTES.CHARACTERS}
+          searchParams={{ ...searchParams }}
         />
         <div className='mt-8 grid grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'>
           {response.results.map((char) => (

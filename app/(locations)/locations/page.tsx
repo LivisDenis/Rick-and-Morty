@@ -62,14 +62,14 @@ const LocationsPage = () => {
           FILTER
         </button>
       </form>
-        <ul className='grid mt-12 grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'>
-          {isLoading && Array.from({ length: 6 }).map((_, i) => <SkeletonEpisodeCard key={i} />)}
-          {locations?.map((location) => (
-            <li key={location.id}>
-              <LocationCard key={location.id} location={location} />
-            </li>
-          ))}
-        </ul>
+      <ul className='grid mt-12 grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'>
+        {isLoading && Array.from({ length: 6 }).map((_, i) => <SkeletonEpisodeCard key={i} />)}
+        {locations?.map((location) => (
+          <li key={location.id}>
+            <LocationCard key={location.id} location={location} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

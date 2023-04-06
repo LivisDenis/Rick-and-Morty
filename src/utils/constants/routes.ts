@@ -3,6 +3,6 @@ export const ROUTES = {
   GAMES: '/games',
   DEAD_ALIVE_UNKNOWN: 'dead-alive-unknown',
   CHARACTERS: '/characters',
-  EPISODES: '/episodes/0',
+  EPISODES: '/episodes/1',
   LOCATIONS: '/locations'
 };
