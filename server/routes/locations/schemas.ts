@@ -1,8 +1,20 @@
 import { z } from 'zod';
 
-export const LOCATIONS_INPUTS = {
+const LOCATION_FILTER = z
+  .object({
+    page: z.number().optional(),
+    name: z.string().optional(),
+    type: z.string().optional()
+  })
+  .optional();
+
+export const LOCATION_INPUTS = {
   getLocation: z.object({ params: z.object({ id: z.number() }) }),
-  getLocations: z.object({}).optional(),
+  getLocations: z
+    .object({
+      filters: LOCATION_FILTER
+    })
+    .optional(),
   getLocationsInfo: z
     .object({
       count: z.number().optional(),

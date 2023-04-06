@@ -2,8 +2,17 @@ import type { AxiosRequestConfig } from 'axios';
 
 import { api } from '@/utils/api/api';
 
-export const getLocations = async () => {
-  const { data } = await api.get<Result<Episode>>('/location');
+interface LocationsParams {
+  params?: {
+    page?: number;
+    name?: string;
+    type?: string;
+  };
+  config?: AxiosRequestConfig;
+}
+
+export const getLocations = async ({ params, config }: LocationsParams = {}) => {
+  const { data } = await api.get<Result<Episode>>('/location', { ...config, params });
 
   return data;
 };
