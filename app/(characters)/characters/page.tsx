@@ -1,4 +1,4 @@
-import { Pagination } from '@/app/characters/Pagination/Pagination';
+import { Pagination } from '@/app/(characters)/characters/Pagination/Pagination';
 import { CharacterCard } from '@/components';
 import { caller } from '@/server/routes';
 import { ROUTES } from '@/src/utils';

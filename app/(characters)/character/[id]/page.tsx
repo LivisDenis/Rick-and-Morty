@@ -6,6 +6,12 @@ import { caller } from '@/server/routes';
 import { CharacterInfo } from './Components/CharacterInfo';
 import { EpisodesList } from './Components/EpisodesList';
 
+interface CharacterProps {
+  params: {
+    id: string;
+  };
+}
+
 export async function generateMetadata({ params }: CharacterProps): Promise<Metadata> {
   const { response: character } = await caller.getCharacter({ params: { id: +params.id } });
 
@@ -22,11 +28,6 @@ export async function generateStaticParams() {
   }));
 }
 
-interface CharacterProps {
-  params: {
-    id: string;
-  };
-}
 // export const revalidate = 0;
 export const dynamic = 'force-dynamic';
 
