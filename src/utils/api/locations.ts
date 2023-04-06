@@ -12,19 +12,19 @@ interface LocationsParams {
 }
 
 export const getLocations = async ({ params, config }: LocationsParams = {}) => {
-  const { data } = await api.get<Result<Episode>>('/location', { ...config, params });
+  const { data } = await api.get<Result<LocationApi>>('/location', { ...config, params });
 
   return data;
 };
 
 interface LocationParams {
   params: {
-    id: Location['id'];
+    id: LocationApi['id'];
   };
   config?: AxiosRequestConfig;
 }
 export const getLocation = async ({ params, config }: LocationParams) => {
-  const { data } = await api.get<Location>(`/location/${params.id}`, { ...config });
+  const { data } = await api.get<LocationApi>(`/location/${params.id}`, { ...config });
 
   return data;
 };

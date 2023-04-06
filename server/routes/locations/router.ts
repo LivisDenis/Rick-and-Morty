@@ -9,7 +9,7 @@ export const locationsRouter = trpc.router({
 
     return wrapSuccess(info);
   }),
-  getLocations: trpc.procedure.input(LOCATION_INPUTS.getLocations).query(async ({ input }) => {
+  getLocations: trpc.procedure.input(LOCATION_INPUTS.getLocations).mutation(async ({ input }) => {
     const locations = await getLocations({ params: { ...input?.filters } });
 
     return wrapSuccess(locations);

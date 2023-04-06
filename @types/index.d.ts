@@ -63,7 +63,7 @@ interface Episode {
   created: string;
 }
 
-interface Location {
+interface LocationApi {
   id: number;
   name: string;
   type: string;
