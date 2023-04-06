@@ -3,15 +3,14 @@ import type { AxiosRequestConfig } from 'axios';
 import { api } from '@/utils/api/api';
 
 interface CharacterMultipleParams {
-  params?: CharacterFilter;
-  multiple?: number[] | string;
+  params?: {
+    multiple?: string | string[] | number[];
+  };
 }
 
-export const getCharacterMultiple = async ({ multiple = '', params }: CharacterMultipleParams) => {
+export const getCharacterMultiple = async ({ params }: CharacterMultipleParams = {}) => {
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  const { data } = await api.get<Character | Character[]>(`/character/${multiple}`, {
-    params
-  });
+  const { data } = await api.get<Character | Character[]>(`/character/${params?.multiple}`);
 
   return data;
 };

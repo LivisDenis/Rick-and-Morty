@@ -15,7 +15,7 @@ export const dynamic = 'force-dynamic';
 const RootPage = async () => {
   const multiple = getRandomCharactersId(6, 826);
 
-  const { response } = await caller.getCharacterMultiple({ multiple });
+  const { response } = await caller.getCharacterMultiple({ params: { multiple } });
 
   return (
     <section className='flex h-full flex-col items-center justify-center'>

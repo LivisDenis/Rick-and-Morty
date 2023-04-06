@@ -7,7 +7,9 @@ export const charactersRouter = trpc.router({
   getCharacterMultiple: trpc.procedure
     .input(CHARACTER_INPUTS.getCharacterMultiple)
     .query(async ({ input }) => {
-      const characters = await getCharacterMultiple({ ...input });
+      const characters = await getCharacterMultiple({
+        params: { multiple: input?.params?.multiple }
+      });
 
       if (!Array.isArray(characters)) {
         return wrapSuccess([characters]);

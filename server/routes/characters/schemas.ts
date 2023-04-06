@@ -26,9 +26,15 @@ const CHARACTER_FILTER = z
 
 export const CHARACTER_INPUTS = {
   getCharacter: z.object({ params: z.object({ id: z.number() }) }),
-  getCharacterMultiple: z.object({
-    multiple: z.union([z.number().array(), z.string()]).optional()
-  }),
+  getCharacterMultiple: z
+    .object({
+      params: z
+        .object({
+          multiple: z.union([z.string(), z.string().array(), z.number().array()])
+        })
+        .optional()
+    })
+    .optional(),
   getCharacters: z
     .object({
       params: z
