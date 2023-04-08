@@ -4,12 +4,14 @@ import { trpc, wrapSuccess } from '../../utils';
 import { LOCATION_INPUTS } from './schemas';
 
 export const locationsRouter = trpc.router({
-  getLocationsInfo: trpc.procedure.input(LOCATION_INPUTS.getLocationsInfo).query(async () => {
-    const { info } = await getLocations();
+  getLocationsInfo: trpc.procedure
+    .input(LOCATION_INPUTS.getLocationsInfo)
+    .query(async ({ input }) => {
+      const { info } = await getLocations({ params: { ...input?.filters } });
 
-    return wrapSuccess(info);
-  }),
-  getLocations: trpc.procedure.input(LOCATION_INPUTS.getLocations).mutation(async ({ input }) => {
+      return wrapSuccess(info);
+    }),
+  getLocations: trpc.procedure.input(LOCATION_INPUTS.getLocations).query(async ({ input }) => {
     const locations = await getLocations({ params: { ...input?.filters } });
 
     return wrapSuccess(locations);

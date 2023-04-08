@@ -1,3 +1,8 @@
+export const metadata = {
+  title: '🔫 Locations',
+  description: 'Omg morty ?'
+};
+
 interface LocationsLayoutProps {
   children: React.ReactNode;
 }

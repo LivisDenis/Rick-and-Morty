@@ -1,67 +1,70 @@
 'use client';
 
-import { type FormEvent, useState } from 'react';
+import { useState } from 'react';
 
+import Button from '@/components/buttons/Button';
 import { LocationCard } from '@/components/cards/LocationCard';
 import SkeletonEpisodeCard from '@/components/skeletons/SkeletonEpisodeCard';
 import { trpc } from '@/src/utils';
 
+import { Filter } from './Filter/Filter';
+
 interface SearchFields {
-  page?: number;
-  name?: string;
-  type?: string;
+  name: string;
+  type: string;
 }
 
-const LocationsPage = () => {
-  const [searchFields, setSearchFields] = useState<SearchFields>({
-    page: 1
-  });
-
-  const locationsMutation = trpc.getLocations.useMutation();
-
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    locationsMutation.mutate({ filters: { ...searchFields } });
+interface LocationsPageProps {
+  searchParams?: {
+    name?: string;
+    type?: string;
   };
+}
+
+const LocationsPage = ({ searchParams }: LocationsPageProps) => {
+  const [searchFields, setSearchFields] = useState<SearchFields>({
+    name: searchParams?.name || '',
+    type: searchParams?.type || ''
+  });
+  const [page, setPage] = useState(1);
+
+  const locationsMutation = trpc.getLocations.useQuery({ filters: { ...searchFields, page } });
+  const { data: locationsInfo } = trpc.getLocationsInfo.useQuery({
+    filters: { ...searchFields, page }
+  });
 
   const isLoading = locationsMutation.isLoading;
   const locations = locationsMutation.data?.response.results;
+  const totalPages = locationsInfo?.response.pages;
 
   return (
-    <div>
-      <form className='flex gap-x-5' onSubmit={onSubmit}>
-        <div>
-          <label className='text-[16px] text-slate-200' htmlFor='name'>
-            Name
-            <input
-              type='text'
-              id='name'
-              value={searchFields.name}
-              onChange={(e) => setSearchFields({ ...searchFields, name: e.target.value })}
-              className='px-4 mt-2 text-black py-3 max-w-[250px] w-full rounded-[5px]'
-            />
-          </label>
-        </div>
-        <div>
-          <label className='text-[16px] text-slate-200' htmlFor='type'>
-            Type
-            <input
-              type='text'
-              id='type'
-              value={searchFields.type}
-              onChange={(e) => setSearchFields({ ...searchFields, type: e.target.value })}
-              className='px-4 mt-2 text-black py-3 max-w-[250px] w-full rounded-[5px]'
-            />
-          </label>
-        </div>
-        <button
-          className='text-black mt-auto h-[43px] max-w-[100px] w-full px-4 py-3 bg-green-400 hover:bg-fuchsia-300 rounded-[5px]'
-          type='submit'
+    <>
+      <Filter
+        initialValues={searchFields}
+        onSubmit={(values) => {
+          setPage(1);
+          setSearchFields(values);
+        }}
+        isLoading={isLoading}
+      />
+      <div className='flex mt-12 justify-center'>
+        <Button
+          onClick={() => setPage((prev) => prev - 1)}
+          bg='cyan'
+          disable={page <= 1}
+          disabled={isLoading}
         >
-          FILTER
-        </button>
-      </form>
+          PREV
+        </Button>
+        <Button
+          onClick={() => setPage((prev) => prev + 1)}
+          bg='cyan'
+          disable={page >= totalPages!}
+          disabled={isLoading}
+        >
+          NEXT
+        </Button>
+      </div>
       <ul className='grid mt-12 grid-cols-2 max-[740px]:grid-cols-1 gap-x-6 gap-y-4'>
         {isLoading && Array.from({ length: 6 }).map((_, i) => <SkeletonEpisodeCard key={i} />)}
         {locations?.map((location) => (
@@ -70,7 +73,7 @@ const LocationsPage = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

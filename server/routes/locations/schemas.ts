@@ -18,7 +18,8 @@ export const LOCATION_INPUTS = {
   getLocationsInfo: z
     .object({
       count: z.number().optional(),
-      pages: z.number().optional()
+      pages: z.number().optional(),
+      filters: LOCATION_FILTER
     })
     .optional()
 };
