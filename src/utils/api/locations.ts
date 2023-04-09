@@ -28,3 +28,22 @@ export const getLocation = async ({ params, config }: LocationParams) => {
 
   return data;
 };
+
+interface LocationMultipleParams {
+  params?: {
+    multiple?: string | string[];
+  };
+  filter?: {
+    name?: string;
+    type?: string;
+  };
+}
+
+export const getLocationMultiple = async ({ filter, params }: LocationMultipleParams = {}) => {
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  const { data } = await api.get<LocationApi[] | LocationApi>(`/location/${params?.multiple}`, {
+    params: filter
+  });
+
+  return data;
+};

@@ -15,6 +15,15 @@ export const LOCATION_INPUTS = {
       filters: LOCATION_FILTER
     })
     .optional(),
+  getLocationMultiple: z
+    .object({
+      params: z
+        .object({
+          multiple: z.union([z.string(), z.string().array()])
+        })
+        .optional()
+    })
+    .optional(),
   getLocationsInfo: z
     .object({
       count: z.number().optional(),

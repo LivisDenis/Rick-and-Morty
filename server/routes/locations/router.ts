@@ -1,4 +1,4 @@
-import { getLocations, getLocation } from '@/utils/api';
+import { getLocations, getLocation, getLocationMultiple } from '@/utils/api';
 
 import { trpc, wrapSuccess } from '../../utils';
 import { LOCATION_INPUTS } from './schemas';
@@ -16,6 +16,17 @@ export const locationsRouter = trpc.router({
 
     return wrapSuccess(locations);
   }),
+  getLocationMultiple: trpc.procedure
+    .input(LOCATION_INPUTS.getLocationMultiple)
+    .query(async ({ input }) => {
+      const episodes = await getLocationMultiple({ params: { multiple: input?.params?.multiple } });
+
+      if (!Array.isArray(episodes)) {
+        return wrapSuccess([episodes]);
+      }
+
+      return wrapSuccess(episodes);
+    }),
   getLocation: trpc.procedure.input(LOCATION_INPUTS.getLocation).query(async ({ input }) => {
     const location = await getLocation({ params: { id: input.params.id } });
 
