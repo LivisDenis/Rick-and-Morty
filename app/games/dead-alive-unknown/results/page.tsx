@@ -8,7 +8,7 @@ const ResultsPage = async () => {
   return (
     <section className='flex flex-col w-full bg-gray-600 p-6 rounded-[10px]'>
       <h2 className='text-slate-200 text-center mb-8 font-bold text-[26px]'>Top players</h2>
-      {!bestOfPlayers && <div className='text-slate-200 text-center font-bold text-[20px]'>
+      {!bestOfPlayers[0] && <div className='text-slate-400 text-center font-bold pb-6 text-[20px]'>
         Nobody has played yet 😕
       </div>}
       <ul className='flex flex-col'>
