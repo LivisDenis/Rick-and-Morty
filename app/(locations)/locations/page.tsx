@@ -47,7 +47,7 @@ const LocationsPage = ({ searchParams }: LocationsPageProps) => {
         }}
         isLoading={isLoading}
       />
-      <div className='flex mt-12 justify-center'>
+      <div className='flex mt-12 gap-x-5 justify-center'>
         <Button
           onClick={() => setPage((prev) => prev - 1)}
           bg='cyan'

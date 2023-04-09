@@ -11,7 +11,7 @@ interface ButtonProps extends ComponentPropsWithRef<'button'> {
 
 export const Button = ({ children, bg, selected, disable, ...props }: ButtonProps) => {
   const style = classnames(
-    'ml-4 px-4 py-3 rounded-[5px]',
+    'px-4 py-3 rounded-[5px]',
     { 'bg-cyan-500 hover:bg-red-600 hover:text-slate-200': bg === 'cyan' },
     { 'bg-cyan-50 hover:bg-fuchsia-300 text-black': bg === 'white' },
     { 'bg-green-600 hover:bg-fuchsia-600 text-slate-200': bg === 'green' },
