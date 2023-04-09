@@ -24,7 +24,7 @@ const DeadAliveUnknown = () => {
     <>
       {gameState.status === 'not-started' && (
         <GameRegister
-          next={({ name }) =>
+          next={(name) =>
             setGameState({
               ...gameState,
               name,

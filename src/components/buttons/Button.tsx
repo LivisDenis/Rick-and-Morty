@@ -4,12 +4,13 @@ import classnames from 'classnames';
 
 interface ButtonProps extends ComponentPropsWithRef<'button'> {
   bg: 'cyan' | 'green' | 'gray' | 'pink' | 'white';
+  full?: boolean;
   selected?: boolean;
   disable?: boolean;
   children: string;
 }
 
-export const Button = ({ children, bg, selected, disable, ...props }: ButtonProps) => {
+export const Button = ({ children, bg, selected, disable, full, ...props }: ButtonProps) => {
   const style = classnames(
     'px-4 py-3 rounded-[5px]',
     { 'bg-cyan-500 hover:bg-red-600 hover:text-slate-200': bg === 'cyan' },
@@ -19,7 +20,8 @@ export const Button = ({ children, bg, selected, disable, ...props }: ButtonProp
     {
       'bg-cyan-500 aria-selected:bg-fuchsia-600 aria-selected:text-slate-200 text-black':
         bg === 'pink' && selected
-    }
+    },
+    { 'w-full': full }
   );
 
   return (

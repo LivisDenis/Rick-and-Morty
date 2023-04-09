@@ -17,14 +17,9 @@ interface DisableButtonProps {
 const DisableButton = ({ off }: DisableButtonProps) =>
   classnames({ 'pointer-events-none [&_div]:bg-gray-400': off });
 
-export const Pagination = ({
-  totalPages,
-  page,
-  searchParams,
-  queryParams,
-  pathname,
-  changePathname
-}: PaginationProps) => {
+export const Pagination = (props: PaginationProps) => {
+  const { totalPages, page, searchParams, queryParams, pathname, changePathname } = props;
+
   const disableNext = DisableButton({ off: page >= totalPages });
   const disablePrev = DisableButton({ off: page <= 1 });
 
@@ -35,7 +30,7 @@ export const Pagination = ({
     changePathname ? `${pathname}/${countPage}` : pathname;
 
   return (
-    <div className='flex justify-center'>
+    <div className='flex gap-x-5 justify-center'>
       <Link
         className={disablePrev}
         href={{ pathname: onChangePathname(+page - 1), query: onChangeQuery(+page - 1) }}

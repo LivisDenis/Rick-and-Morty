@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import { getRandomCharacterId, trpc } from '@/src/utils';
 
-import SkeletonDAUGame from '../ui/SkeletonDAUGame';
+import SkeletonDAUGame from '../Skeleton/SkeletonDAUGame';
 
 interface GamePlayProps {
   game: GameState;

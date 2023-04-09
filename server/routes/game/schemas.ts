@@ -12,5 +12,6 @@ export const GAMES_INPUT = {
     score: z.number(),
     timeOfGame: z.number()
   }),
-  getCharacterDAUGame: z.object({ params: z.object({ id: z.number() }) })
+  getCharacterDAUGame: z.object({ params: z.object({ id: z.number() }) }),
+  bestOfPlayersDAUGame: z.object({}).optional()
 };

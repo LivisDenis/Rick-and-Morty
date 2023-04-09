@@ -39,5 +39,16 @@ export const gameRouter = trpc.router({
         return wrapSuccess(true);
       }
       return wrapSuccess(false);
-    })
+    }),
+
+  bestOfPlayersDAUGame: trpc.procedure.input(GAMES_INPUT.bestOfPlayersDAUGame).query(async () => {
+    const bestOfPlayers = await prisma.deadAliveUnknownGame.findMany({
+      orderBy: {
+        score: 'desc'
+      },
+      take: 7
+    });
+
+    return wrapSuccess(bestOfPlayers);
+  })
 });
