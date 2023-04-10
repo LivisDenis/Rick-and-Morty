@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-import Button from '@/components/buttons/Button';
 import { LocationCard } from '@/components/cards/LocationCard';
 import SkeletonEpisodeCard from '@/components/skeletons/SkeletonEpisodeCard';
+import Button from '@/components/ui/Button';
 import { trpc } from '@/src/utils';
 
 import { Filter } from './Filter/Filter';

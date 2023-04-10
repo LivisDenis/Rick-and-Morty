@@ -49,7 +49,7 @@ export const GamePlay = ({ game, resultGame, next }: GamePlayProps) => {
       createGameMutation.mutate(finalResults);
 
       resultGame(finalResults);
-      return next();
+      next();
     }
   };
 

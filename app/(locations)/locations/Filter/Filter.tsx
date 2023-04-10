@@ -2,6 +2,8 @@
 
 import { type FormEvent, useState } from 'react';
 
+import Input from '@/components/ui/Input';
+
 interface Values {
   name: string;
   type: string;
@@ -25,26 +27,22 @@ export const Filter = ({ initialValues, onSubmit, isLoading }: FilterProps) => {
   return (
     <form className='flex gap-x-5' onSubmit={handleSubmit}>
       <div>
-        <label className='text-[16px] text-slate-200' htmlFor='name'>
+        <label className='text-[16px] text-slate-200'>
           Name
-          <input
-            type='text'
+          <Input
             id='name'
             value={fieldValue?.name}
             onChange={(e) => setFieldValue({ ...fieldValue, name: e.target.value })}
-            className='px-4 mt-2 text-black py-3 max-w-[250px] w-full rounded-[5px]'
           />
         </label>
       </div>
       <div>
         <label className='text-[16px] text-slate-200' htmlFor='type'>
           Type
-          <input
-            type='text'
+          <Input
             id='type'
             value={fieldValue?.type}
             onChange={(e) => setFieldValue({ ...fieldValue, type: e.target.value })}
-            className='px-4 mt-2 text-black py-3 max-w-[250px] w-full rounded-[5px]'
           />
         </label>
       </div>

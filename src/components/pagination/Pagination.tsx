@@ -1,6 +1,8 @@
 import classnames from 'classnames';
 import Link from 'next/link';
 
+import Button from '@/src/components/ui/Button';
+
 interface PaginationProps {
   page: number;
   totalPages: number;
@@ -35,18 +37,20 @@ export const Pagination = (props: PaginationProps) => {
         className={disablePrev}
         href={{ pathname: onChangePathname(+page - 1), query: onChangeQuery(+page - 1) }}
       >
-        <div className='text-black px-4 py-3 bg-cyan-500 rounded-[5px] hover:bg-red-600 hover:text-slate-200'>
+        <Button bg='cyan' disable={page <= 1}>
           PREV
-        </div>
+        </Button>
       </Link>
       <Link
         className={disableNext}
         href={{ pathname: onChangePathname(+page + 1), query: onChangeQuery(+page + 1) }}
       >
-        <div className='ml-4 text-black px-4 py-3 bg-cyan-500 rounded-[5px] hover:bg-red-600 hover:text-slate-200'>
+        <Button bg='cyan' disable={page >= totalPages}>
           NEXT
-        </div>
+        </Button>
       </Link>
     </div>
   );
 };
+
+export default Pagination;
