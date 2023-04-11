@@ -21,8 +21,6 @@ interface CharactersSearchParams {
 }
 export const revalidate = 0;
 
-export const dynamic = 'force-dynamic';
-
 const CharactersFilter = async ({ searchParams }: CharactersSearchParams) => {
   const filters = {
     ...(searchParams?.status && { status: searchParams.status }),

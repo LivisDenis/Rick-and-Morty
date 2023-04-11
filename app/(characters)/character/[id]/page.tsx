@@ -28,7 +28,6 @@ export async function generateStaticParams() {
   }));
 }
 
-// export const revalidate = 0;
 export const dynamic = 'force-dynamic';
 
 const Character = async ({ params }: CharacterProps) => {

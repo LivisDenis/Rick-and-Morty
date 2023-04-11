@@ -1,3 +1,10 @@
+import { type Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '🔫 Episodes',
+  description: 'Omg morty ?'
+};
+
 interface EpisodesLayoutProps {
   children: React.ReactNode;
 }

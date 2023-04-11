@@ -1,7 +1,14 @@
+import { type Metadata } from 'next';
+
 import { Footer, Header } from '@/components';
 import { TRPCProvider } from '@/utils/hooks/trpc';
 
 import '../styles/globals.scss';
+
+export const metadata: Metadata = {
+  title: '🔫 Rick and Morty app',
+  description: 'Omg morty ?'
+};
 
 interface RootLayoutProps {
   children: React.ReactNode;

@@ -1,13 +1,6 @@
-import { type Metadata } from 'next';
-
 import { Pagination } from '@/components';
 import EpisodeCard from '@/components/cards/EpisodeCard';
 import { caller } from '@/server/routes';
-
-export const metadata: Metadata = {
-  title: '🔫 Episodes',
-  description: 'Omg morty ?'
-};
 
 export async function generateStaticParams() {
   const pagesCount = (await caller.getEpisodesInfo()).response.pages;
