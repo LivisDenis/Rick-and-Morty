@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import Image from 'next/image';
 
+import Button from '@/components/ui/Button';
 import { getRandomCharacterId, trpc } from '@/src/utils';
 
 import SkeletonDAUGame from '../Skeleton/SkeletonDAUGame';
@@ -19,7 +20,7 @@ export const GamePlay = ({ game, resultGame, next }: GamePlayProps) => {
   const [portals, setPortals] = useState(3);
   const [randomId, setRandomId] = useState(getRandomCharacterId());
 
-  const { data, isLoading, isSuccess } = trpc.getCharacterDAUGame.useQuery({
+  const characterResponse = trpc.getCharacterDAUGame.useQuery({
     params: { id: randomId }
   });
 
@@ -53,6 +54,8 @@ export const GamePlay = ({ game, resultGame, next }: GamePlayProps) => {
     }
   };
 
+  const isLoading = checkedStatusMutation.isLoading || createGameMutation.isLoading;
+
   return (
     <>
       <div className='flex flex-col w-full bg-gray-600 p-6 rounded-[10px]'>
@@ -65,13 +68,15 @@ export const GamePlay = ({ game, resultGame, next }: GamePlayProps) => {
           Died or Alive or Unknown
         </h1>
         <div>
-          {isLoading && <SkeletonDAUGame />}
-          {isSuccess && (
+          {characterResponse.isLoading && <SkeletonDAUGame />}
+          {characterResponse.isSuccess && (
             <>
-              <h2 className='text-slate-200 text-center text-[22px]'>{data.response.name}</h2>
+              <h2 className='text-slate-200 text-center text-[22px]'>
+                {characterResponse.data.response.name}
+              </h2>
               <Image
-                src={data.response.image}
-                alt={data.response.name}
+                src={characterResponse.data.response.image}
+                alt={characterResponse.data.response.name}
                 width={250}
                 height={250}
                 className='rounded-[5px] mx-auto mt-3'
@@ -80,27 +85,15 @@ export const GamePlay = ({ game, resultGame, next }: GamePlayProps) => {
           )}
         </div>
         <div className='flex flex-col gap-y-4 mt-12'>
-          <button
-            type='button'
-            onClick={() => onOptionButton('alive')}
-            className='text-black w-full px-4 py-3 bg-cyan-50 hover:bg-fuchsia-300 rounded-[5px]'
-          >
+          <Button bg='white' disabled={isLoading} onClick={() => onOptionButton('alive')}>
             alive
-          </button>
-          <button
-            type='button'
-            onClick={() => onOptionButton('dead')}
-            className='text-black w-full px-4 py-3 bg-cyan-50 hover:bg-fuchsia-300 rounded-[5px]'
-          >
+          </Button>
+          <Button bg='white' disabled={isLoading} onClick={() => onOptionButton('dead')}>
             dead
-          </button>
-          <button
-            type='button'
-            onClick={() => onOptionButton('unknown')}
-            className='text-black px-4 w-full py-3 bg-cyan-50 hover:bg-fuchsia-300 rounded-[5px]'
-          >
+          </Button>
+          <Button bg='white' disabled={isLoading} onClick={() => onOptionButton('unknown')}>
             unknown
-          </button>
+          </Button>
         </div>
       </div>
     </>

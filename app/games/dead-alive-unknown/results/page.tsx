@@ -15,19 +15,19 @@ const ResultsPage = async () => {
           Nobody has played yet 😕
         </div>
       )}
-      <ul className='flex flex-col'>
+      <ul className='flex flex-col divide-y'>
         {bestOfPlayers.map((player, i) => (
           <li
             key={player.id}
-            className='flex align-bottom justify-between text-[20px] text-slate-200 px-3 py-4 border-2 border-black rounded-[10px]'
+            className='flex align-bottom justify-between text-[20px] text-slate-200 px-3 py-4'
           >
             <div className='flex align-bottom gap-x-2'>
-              <span className='text-[20px]'>{i + 1}</span>
+              <span className='text-[20px]'>{i + 1}.</span>
               <span>{player.name}</span>
             </div>
             <div className='flex gap-x-4'>
               <span>Score: {player.score}</span>
-              <span>Time: {player.timeOfGame}</span>
+              <span>Time: {Math.floor(+player.timeOfGame / 1000)}sec</span>
             </div>
           </li>
         ))}

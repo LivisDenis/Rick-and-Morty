@@ -16,7 +16,7 @@ export const Button = ({ children, bg, selected, disable, full, ...props }: Butt
     { 'bg-cyan-500 hover:bg-red-600 hover:text-slate-200': bg === 'cyan' },
     { 'bg-cyan-50 hover:bg-fuchsia-300 text-black': bg === 'white' },
     { 'bg-green-600 hover:bg-fuchsia-600 text-slate-200': bg === 'green' },
-    { 'bg-gray-400 text-black pointer-events-none': disable },
+    { 'bg-gray-400 text-black pointer-events-none': disable || props.disabled },
     {
       'bg-cyan-500 aria-selected:bg-fuchsia-600 aria-selected:text-slate-200 text-black':
         bg === 'pink' && selected
