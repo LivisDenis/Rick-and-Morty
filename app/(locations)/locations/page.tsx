@@ -35,7 +35,7 @@ const LocationsPage = ({ searchParams }: LocationsPageProps) => {
 
   const isLoading = locationsMutation.isLoading;
   const locations = locationsMutation.data?.response.results;
-  const totalPages = locationsInfo?.response.pages;
+  const totalPages = locationsInfo?.response?.pages || 0;
 
   return (
     <>
@@ -59,7 +59,7 @@ const LocationsPage = ({ searchParams }: LocationsPageProps) => {
         <Button
           onClick={() => setPage((prev) => prev + 1)}
           bg='cyan'
-          disable={page >= totalPages!}
+          disable={page >= totalPages}
           disabled={isLoading}
         >
           NEXT
@@ -72,6 +72,7 @@ const LocationsPage = ({ searchParams }: LocationsPageProps) => {
             <LocationCard key={location.id} location={location} />
           </li>
         ))}
+          {!locations && !isLoading && <div className="text-slate-200 text-[24px]">Ops, not found locations</div>}
       </ul>
     </>
   );
